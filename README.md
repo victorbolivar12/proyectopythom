@@ -10,5 +10,7 @@ Primero, crear un entorno virtual:
 Para instalar los paquetes necesarios:
 ### `pip install -r requirements.txt`
 
+para activar el entorno virtual
+### `.\venv\Scripts\activate`
 <hr/>
 
