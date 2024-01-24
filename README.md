@@ -4,6 +4,9 @@ Este proyecto es una aplicación web desarrollada con Flask que utiliza tecnolog
 
 <hr/>
 
+para clonar el repositorio
+### `git clone https://github.com/victorbolivar12/proyectopythom.git`
+
 Primero, crear un entorno virtual:
 ### `python -m virtualenv venv`
 
