@@ -1,14 +1,13 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from src.models.birthrecord_model import db
+from src.models.request_model import db
 from src.routes.birthrecord_routes import birthrecord_route
-from src.database.db_mysql import get_connection
+from src.routes.request_routes import request_route
 from src.services.birthrecord_service import save_birth_record
 from PIL import Image
-from datetime import datetime
 import pytesseract
 import os
 import re
-
 
 # Especificar la ubicación del ejecutable de Tesseract OCR
 pytesseract.tesseract_cmd = r'C:\Users\pc\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
@@ -19,7 +18,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Carpeta para guardar los archivos subidos
 db.init_app(app)
 
+
 app.register_blueprint(birthrecord_route)
+app.register_blueprint(request_route)
 
 # Crear las tablas
 with app.app_context():
@@ -97,5 +98,6 @@ def extract_info_from_text(text):
         'birth_time': birth_time,
         'birth_place': birth_place,
     }
+
 if __name__ == '__main__':
     app.run(debug=True)
