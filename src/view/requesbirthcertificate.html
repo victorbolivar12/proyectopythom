@@ -27,7 +27,6 @@
                             Partida de nacimiento
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="/">Escanear datos partida de naciento</a></li>
                             <li><a class="dropdown-item" href="/generatebirthcertificate">Generar la partida de
                                     nacimiento actualizada</a></li>
                             <li><a class="dropdown-item active" href="/requesbirthcertificate">Solicitud de
@@ -55,25 +54,17 @@
                     <div class="modal-body">
                         <form method="POST" action="/createrequest">
                             <div class="mb-3">
+                                <label for="act_number" class="col-form-label">Numero de acta</label>
+                                <input type="text" class="form-control" id="act_number" name="act_number"> 
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="name" class="col-form-label">Nombre</label>
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="mb-3">
                                 <label for="lastname" class="col-form-label">Apellido</label>
                                 <input type="text" class="form-control" id="lastname" name="lastname">
-                            </div>
-                            <div class="mb-3">
-                                <label for="status" class="col-form-label">Estado</label>
-                                <select class="form-select mb-3" id="status" name="status" aria-label="Default select example">
-                                    <option selected>Abrir menu de seleccion</option>
-                                    <option value="Rejected">Rechazado</option>
-                                    <option value="Pending">Pendiente</option>
-                                    <option value="Approved">Aprovado</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="duration" class="col-form-label">Duracion</label>
-                                <input type="text" class="form-control" id="duration" name="duration"> 
                             </div>
 
                             <div class="modal-footer">
@@ -96,7 +87,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
-                            <th scope="col">Días</th>
+                            <th scope="col">Numero de acta</th>
                             <th scope="col">Estado</th>
                         </tr>
                     </thead>
@@ -106,7 +97,7 @@
                             <th scope="row">{{ request.id }}</th>
                             <td>{{ request.name }}</td>
                             <td>{{ request.last_name }}</td>
-                            <td>{{ request.duration }}</td>
+                            <td>{{ request.act_number }}</td>
                             <td>{{ request.status }}</td>
                         </tr>
                         {% endfor %}

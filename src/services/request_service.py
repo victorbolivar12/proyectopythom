@@ -4,8 +4,8 @@ from flask import jsonify
 
 class RequestService:
     @staticmethod
-    def create_request(name, last_name, status, duration):
-        new_request = Request(name=name, last_name=last_name, status=status, duration=duration)
+    def create_request(act_number, name, last_name, status):
+        new_request = Request(act_number=act_number, name=name, last_name=last_name, status=status)
         db.session.add(new_request)
         db.session.commit()
     
@@ -19,7 +19,7 @@ class RequestService:
                 "name": request.name,
                 "last_name": request.last_name,
                 "status": request.status,
-                "duration": request.duration
+                "act_number": request.act_number
             })
         return result
 
@@ -37,13 +37,10 @@ class RequestService:
             return None
 
     @staticmethod
-    def update_request(request_id, name, last_name, status, duration):
+    def update_request(request_id, status):
         request = Request.query.get(request_id)
         if request:
-            request.name = name
-            request.last_name = last_name
             request.status = status
-            request.duration = duration
             db.session.commit()
             return jsonify({"message": "Request updated successfully"})
         else:
